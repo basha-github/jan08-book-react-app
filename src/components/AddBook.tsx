@@ -1,6 +1,7 @@
 //import React from "react";
 import { useState } from "react";
 import "../css/add-book.css";
+import axios from "axios";
 
 export default function AddBook() {
   const [title, setTitle] = useState("");
@@ -12,6 +13,13 @@ export default function AddBook() {
     console.log("title--->" + title);
     console.log("Price--->" + price);
     console.log("Author--->" + author);
+
+    const book = { title: title, price: price, author: author };
+
+    axios.post("http://localhost:8080/uday-publications/book/add",book)
+    .then((res)=>{
+      console.log(res);
+    })
   };
 
   const getTitle = (e: any) => {
