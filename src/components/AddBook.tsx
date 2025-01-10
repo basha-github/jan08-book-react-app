@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "../css/add-book.css";
 import axios from "axios";
+import NavBar from "./NavBar";
 
 export default function AddBook() {
   const [title, setTitle] = useState("");
@@ -43,6 +44,7 @@ export default function AddBook() {
 
   return (
     <div>
+      <NavBar />
       <div className="container mt-5 mb-5 d-flex justify-content-center">
         <div className="card px-1 py-4">
           <div className="card-body">
