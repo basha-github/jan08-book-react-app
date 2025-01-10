@@ -7,19 +7,24 @@ export default function AddBook() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [author, setAuthor] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
 
   const saveIntoDB = () => {
     console.log("confirm pressed!!!!!");
     console.log("title--->" + title);
     console.log("Price--->" + price);
     console.log("Author--->" + author);
+    console.log("ImagURL--->" + imgUrl);
 
-    const book = { title: title, price: price, author: author };
+    const book = { title: title, price: price, author: author,
+      imgUrl:imgUrl
+     };
 
-    axios.post("http://localhost:8080/uday-publications/book/add",book)
-    .then((res)=>{
-      console.log(res);
-    })
+    axios
+      .post("http://localhost:8080/uday-publications/book/add", book)
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   const getTitle = (e: any) => {
@@ -30,6 +35,10 @@ export default function AddBook() {
   };
   const getAuthor = (e: any) => {
     setAuthor(e.target.value);
+  };
+
+  const getImgUrl = (e: any) => {
+    setImgUrl(e.target.value);
   };
 
   return (
@@ -75,6 +84,20 @@ export default function AddBook() {
                       className="form-control"
                       type="text"
                       placeholder="Price"
+                    />{" "}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="form-group">
+                  <div className="input-group">
+                    <input
+                      onChange={getImgUrl}
+                      className="form-control"
+                      type="text"
+                      placeholder="Image URL"
                     />{" "}
                   </div>
                 </div>
