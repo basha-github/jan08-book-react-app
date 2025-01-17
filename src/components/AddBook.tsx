@@ -3,12 +3,16 @@ import { useState } from "react";
 import "../css/add-book.css";
 import axios from "axios";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function AddBook() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [author, setAuthor] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+
+const allBooksNav = useNavigate();
+
 
   const saveIntoDB = () => {
     console.log("confirm pressed!!!!!");
@@ -25,6 +29,7 @@ export default function AddBook() {
       .post("http://localhost:8080/uday-publications/book/add", book)
       .then((res) => {
         console.log(res);
+        allBooksNav("/all");
       });
   };
 
@@ -110,7 +115,7 @@ export default function AddBook() {
               onClick={saveIntoDB}
               className="btn btn-primary btn-block confirm-button"
             >
-              Confirm
+              Save
             </button>
           </div>
         </div>
